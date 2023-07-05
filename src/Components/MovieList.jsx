@@ -2,6 +2,7 @@ import {myFetch} from "../Utilities/myFetch.js";
 import {MovieCard} from "./MovieCard.jsx";
 import {useEffect, useState} from "react";
 import Slider from 'react-slick';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 
 export function MovieList({endpoint, name, query}) {
     const [movies, setMovies] = useState();
@@ -45,14 +46,17 @@ export function MovieList({endpoint, name, query}) {
     console.log(movies)
     return (
         <>
-            <div id={name.toLowerCase()} className={"container mx-auto mt-[50px]"}>
+            <div id={name.toLowerCase()} className={"container relative mx-auto mt-[50px]"}>
                 <h3 className={"text-3xl mb-2 pl-4"}>{name}</h3>
+                <a href="#" className={"text-center w-full underline mt-2 hover:text-red-500 absolute right-0 top-0"}>
+                    <KeyboardDoubleArrowUpIcon sx={{fontSize: 30}}/>
+                </a>
                 <Slider {...settings}>
                     {movies && movies.results.map((el) => (
                         <MovieCard key={el.id} data={el}/>
                     ))}
                 </Slider>
-                <a href="#" className={"text-center w-full underline mt-2 hover:text-red-500"}>TOP</a>
+
             </div>
         </>
     )

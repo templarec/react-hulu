@@ -13,7 +13,7 @@ export function SliderVid({videos}) {
         infinite: true,
         lazyLoad: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 4,
         slidesToScroll: 1,
     };
 
@@ -21,7 +21,7 @@ export function SliderVid({videos}) {
         <>
             <Slider {...settings}>
                 {/* eslint-disable-next-line react/prop-types */}
-                    {videos && videos.filter(el => el.official && el.type === 'Trailer').map((el, i) => (
+                    {videos && videos.filter(el => el.official && (el.type === 'Trailer' || el.type === 'Teaser' || el.type === 'Clip') ).map((el, i) => (
                         <div key={i} className={"px-2"}  >
                             <LiteYouTubeEmbed id={el.key}  title={el.name} />
                             <p className={"text-center"}>{el.name}</p>

@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'nova': ['Nova Oval', 'sans-serif'],
+        'zloop': ['Zen Loop', 'sans-serif'],
+        'sans': ['Montserrat', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }

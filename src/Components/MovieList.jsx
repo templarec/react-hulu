@@ -46,11 +46,13 @@ export function MovieList({endpoint, name, query}) {
     console.log(movies)
     return (
         <>
-            <div id={name.toLowerCase()} className={"container relative mx-auto mt-[50px]"}>
-                <h3 className={"text-3xl mb-2 pl-4"}>{name}</h3>
-                <a href="#" className={"text-center w-full underline mt-2 hover:text-red-500 absolute right-0 top-0"}>
-                    <KeyboardDoubleArrowUpIcon sx={{fontSize: 30}}/>
-                </a>
+            <div id={name.toLowerCase()} className={"container mx-auto mt-[50px]"}>
+                <div className={"flex flex-row justify-between "}>
+                    <h3 className={"text-3xl mb-2 pl-4 "}>{name}</h3>
+                    <a href="#" className={" hover:text-red-500 "}>
+                        <KeyboardDoubleArrowUpIcon sx={{fontSize: 30}}/>
+                    </a>
+                </div>
                 <Slider {...settings}>
                     {movies && movies.results.map((el) => (
                         <MovieCard key={el.id} data={el}/>

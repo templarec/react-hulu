@@ -6,7 +6,7 @@ export function Header() {
 
 	return (
 		<>
-		<header className="container flex flex-row justify-items-start mx-auto mb-20 mt-5">
+		<header className="container flex flex-row justify-items-start mx-auto mb-14 mt-5">
 			{pathname !== '' && <Link to={"/"} className={"self-start"}>
 				<ArrowBackIcon sx={{fontSize: 60}}/>
 			</Link>}

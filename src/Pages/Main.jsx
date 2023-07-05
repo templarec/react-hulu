@@ -33,8 +33,8 @@ export default function Main() {
 				{genres && genres.map((gen,i) => (
 
 					<li key={i} className="mr-3 mt-3">
-					<a className="inline-block border border-blue-500 rounded py-1 px-3 bg-blue-950 text-white"
-					href={`#${gen.name.toLowerCase()}`}>{gen.name}</a>
+					<a className="inline-block border border-blue-500 rounded py-1 px-3 bg-blue-950 text-white hover:bg-blue-400"
+                       href={`#${gen.name.toLowerCase()}`}>{gen.name}</a>
 					</li>
 				))}
 

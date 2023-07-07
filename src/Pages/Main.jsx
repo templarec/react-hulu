@@ -29,7 +29,6 @@ export default function Main() {
         if (event.key === 'Enter') {
             setIsSearch(true)
             setKeywordSearch(event.target.value)
-            setMovieState(() => true)
         }
     }
 

@@ -6,10 +6,11 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 
 export function MovieList({endpoint, name, query}) {
     const [movies, setMovies] = useState();
+
     useEffect(() => {
         myFetch('GET', endpoint, query)
             .then(response => setMovies(response))
-    }, []);
+    }, [endpoint, name, query]);
 
     let settings = {
         dots: false,

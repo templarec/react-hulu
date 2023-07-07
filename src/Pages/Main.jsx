@@ -10,7 +10,6 @@ export default function Main() {
     const [genres, setGenres] = useState();
     const [isSearch, setIsSearch] = useState(false);
     const [keywordSearch, setKeywordSearch] = useState();
-
     useEffect(() => {
         myFetch('GET', '/genre/movie/list')
             .then(response => {
@@ -30,6 +29,7 @@ export default function Main() {
         if (event.key === 'Enter') {
             setIsSearch(true)
             setKeywordSearch(event.target.value)
+            setMovieState(() => true)
         }
     }
 

@@ -43,7 +43,6 @@ export function MovieList({endpoint, name, query}) {
 
         ]
     };
-    console.log(movies)
     return (
         <>
             <div id={name.toLowerCase()} className={"container mx-auto mt-[50px]"}>

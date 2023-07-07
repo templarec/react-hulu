@@ -43,7 +43,7 @@ export function Movie() {
                                         <LinkIcon/>
                                     </Link>
                                 </li>
-                                <li data-tooltip-id="link-cast" data-tooltip-content="Cast">
+                                <li data-tooltip-id="link-cast" data-tooltip-content="Actor">
                                     <Link to={movie.homepage} target={"_blank"}>
                                         <PeopleIcon/>
                                     </Link>

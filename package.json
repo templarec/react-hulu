@@ -23,7 +23,9 @@
     "react-slick": "^0.29.0",
     "react-tooltip": "^5.18.0",
     "react-youtube": "^10.1.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

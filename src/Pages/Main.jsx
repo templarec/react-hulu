@@ -66,6 +66,7 @@ export default function Main() {
                 ))
             }
             {(isSearch && keywordSearch) &&
+                //todo create new component for search results instead of MovieList
                 <MovieList id={"search"} endpoint={"/search/movie"} name={`Search results for: ${keywordSearch}`}
                            query={{query: keywordSearch}}/>
             }

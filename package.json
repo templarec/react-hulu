@@ -14,6 +14,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1",
     "google-auth-library": "^8.9.0",
     "googleapis": "^120.0.0",
     "react": "^18.2.0",
@@ -24,8 +26,7 @@
     "react-tooltip": "^5.18.0",
     "react-youtube": "^10.1.0",
     "slick-carousel": "^1.8.1",
-    "@react-buddy/ide-toolbox": "^2.4.0",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "vercel": "^31.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

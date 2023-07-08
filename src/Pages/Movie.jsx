@@ -7,19 +7,20 @@ import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from 'react-tooltip'
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import {SliderVid} from "../Components/SliderVid.jsx";
+import {SliderCast} from "../Components/SliderCast.jsx";
 
 export function Movie() {
 
-    const {movie, video} = useLoaderData();
+    const {movie, video, cast} = useLoaderData();
 
 
     return (
         <>
             <section className={"container flex flex-col items-center justify-evenly mx-auto"}>
-                <h1 className={"text-4xl mt-6 pl-[60px] "}>{movie.original_title}</h1>
-                <h3 className={"text-2xl mt-1 mb-8 pl-[60px]"}>{movie.tagline}</h3>
-                <div className="article flex flex-row items-center grid-cols-2 gap-10 ">
-                    <div className="details flex flex-col justify-center p-5 gap-3 w-full">
+                <h1 className={"text-4xl mt-6"}>{movie.original_title}</h1>
+                <h3 className={"text-2xl mt-1 mb-8"}>{movie.tagline}</h3>
+                <div className="article flex flex-row">
+                    <div className="details flex flex-col justify-center p-5 gap-3 w-3/4">
                         <div className="synops">
                             <p>Overview:</p>
                             <p className={""}>
@@ -43,17 +44,18 @@ export function Movie() {
                                         <LinkIcon/>
                                     </Link>
                                 </li>
-                                <li data-tooltip-id="link-cast" data-tooltip-content="Actor">
-                                    <Link to={movie.homepage} target={"_blank"}>
-                                        <PeopleIcon/>
-                                    </Link>
-                                </li>
                             </ul>
+                        </div>
+                        <hr/>
+                        <h2 className={"text-3xl text-center mt-auto"}>Cast</h2>
+                        <div className="cast container w-[90%] mx-auto mt-2 ">
+                            <SliderCast cast={cast.cast}/>
                         </div>
 
                     </div>
-                    <div className="poster w-full">
-                        <img src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path} alt="placehold"/>
+                    <div className="poster">
+                        <img className={"w-full"} src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
+                             alt="placehold"/>
                     </div>
                     <Tooltip id={"link-movie"}/>
                     <Tooltip id={"link-cast"}/>
@@ -74,8 +76,9 @@ export function Movie() {
 export const loadAll = async ({params}) => {
     const movie = await getMovie(params.id);
     const video = await getVideos(params.id)
+    const cast = await getCast(params.id)
 
-    return defer({movie, video})
+    return defer({movie, video, cast})
 }
 export const getMovie = async (id) => {
     return await myFetch('GET', `/movie/${id}`, {language: 'en-US'})
@@ -84,5 +87,10 @@ export const getMovie = async (id) => {
 
 export const getVideos = async (id) => {
     return await myFetch('GET', `/movie/${id}/videos`, {language: 'en-US'})
+        .then(res => res)
+}
+
+export const getCast = async (id) => {
+    return await myFetch('GET', `/movie/${id}/credits`, {language: 'en-US'})
         .then(res => res)
 }

@@ -10,6 +10,8 @@ export default function Main() {
     const [genres, setGenres] = useState();
     const [isSearch, setIsSearch] = useState(false);
     const [keywordSearch, setKeywordSearch] = useState();
+    const inputSearch = useRef('');
+
     useEffect(() => {
         myFetch('GET', '/genre/movie/list')
             .then(response => {
@@ -25,7 +27,6 @@ export default function Main() {
 
     }, []);
 
-    const inputSearch = useRef('');
     const handleSearch = (event) => {
         if (event.key === 'Enter') {
             setIsSearch(true)
@@ -35,7 +36,6 @@ export default function Main() {
             setKeywordSearch(inputSearch.current.value)
         }
     }
-
 
     return (
         <>
@@ -50,7 +50,6 @@ export default function Main() {
             </ul>}
 
             <div className="search-bar container w-9/12 mx-auto flex my-20">
-
                 <input ref={inputSearch} type="text" id="search-box"
                        className="bg-teal-50 border border-teal-200 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="Search..."
@@ -60,20 +59,17 @@ export default function Main() {
                     className={"inline-block rounded py-1 px-3 bg-green-400 text-black hover:bg-green-600 m-2"}
                     onClick={handleSearch}>Search
                 </button>
-
-
             </div>
+
             {!isSearch &&
                 <MovieList id={"latest"} endpoint={"/movie/now_playing"} name={"In theaters"}/>
             }
             {(genres && !isSearch) &&
                 genres.map((list, i) => (
                     <MovieList key={i} endpoint={list.endpoint} name={list.name} query={list.params}/>
-
                 ))
             }
             {(isSearch && keywordSearch) &&
-                //todo create new component for search results instead of MovieList
                 <MovieList id={"search"} endpoint={"/search/movie"} name={`Search results for: ${keywordSearch}`}
                            query={{query: keywordSearch}} search={true}/>
             }

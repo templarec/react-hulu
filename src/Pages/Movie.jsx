@@ -64,7 +64,8 @@ export function Movie() {
             </section>
 
 
-            <section className={"trailers container my-[25px] mx-auto"}>
+            <section className={"trailers container mb-[25px] mt-16 mx-auto"}>
+                <h2 className={"text-3xl text-center mb-2"}>Trailers</h2>
                 <SliderVid videos={video.results}/>
             </section>
 

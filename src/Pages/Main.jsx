@@ -1,5 +1,5 @@
 import {MovieList} from "../Components/MovieList.jsx";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {myFetch} from "../Utilities/myFetch.js";
 import {Link} from "react-router-dom";
 
@@ -25,17 +25,21 @@ export default function Main() {
 
     }, []);
 
+    const inputSearch = useRef('');
     const handleSearch = (event) => {
         if (event.key === 'Enter') {
             setIsSearch(true)
             setKeywordSearch(event.target.value)
+        } else if (event.type === 'click') {
+            setIsSearch(true)
+            setKeywordSearch(inputSearch.current.value)
         }
     }
 
 
     return (
         <>
-            <ul className="flex flex-wrap justify-center container mx-auto">
+            {!isSearch && <ul className="flex flex-wrap justify-center container mx-auto">
                 {genres && genres.map((gen, i) => (
 
                     <li key={i} className="mr-3 mt-3">
@@ -43,15 +47,19 @@ export default function Main() {
                            href={`#${gen.name.toLowerCase()}`}>{gen.name}</a>
                     </li>
                 ))}
-            </ul>
+            </ul>}
 
-            <div className="search-bar container mx-auto my-20">
+            <div className="search-bar container w-9/12 mx-auto flex my-20">
 
-                <input type="text" id="search-box"
+                <input ref={inputSearch} type="text" id="search-box"
                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="Search..."
                        onKeyDown={handleSearch}
                 />
+                <button
+                    className={"inline-block border border-blue-500 rounded py-1 px-3 bg-blue-950 text-white hover:bg-blue-400 m-2"}
+                    onClick={handleSearch}>Search
+                </button>
 
 
             </div>
@@ -67,7 +75,7 @@ export default function Main() {
             {(isSearch && keywordSearch) &&
                 //todo create new component for search results instead of MovieList
                 <MovieList id={"search"} endpoint={"/search/movie"} name={`Search results for: ${keywordSearch}`}
-                           query={{query: keywordSearch}}/>
+                           query={{query: keywordSearch}} search={true}/>
             }
         </>
 

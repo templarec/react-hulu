@@ -10,12 +10,12 @@ export function SliderCast({cast}) {
 
 	let settings = {
 		dots: false,
-		infinite: true,
+		infinite: false,
 		lazyLoad: true,
 		speed: 500,
 		slidesToShow: 10,
-        slidesToScroll: 5,
-    };
+		slidesToScroll: 5,
+	};
 
     return (
         <>

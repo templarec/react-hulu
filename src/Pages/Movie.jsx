@@ -54,7 +54,8 @@ export function Movie() {
 
                     </div>
                     <div className="poster w-4/12">
-                        <img className={"w-full"} src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
+                        <img className={"w-full"}
+                             src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : `https://fakeimg.pl/500x800?text=${movie.original_title}&font=noto`}
                              alt="placehold"/>
                     </div>
                     <Tooltip id={"link-movie"}/>

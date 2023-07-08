@@ -3,7 +3,7 @@ import { createBrowserRouter,  RouterProvider} from "react-router-dom";
 import Main from "./Pages/Main.jsx";
 import {loadAll, Movie} from "./Pages/Movie.jsx";
 import Root from "./Pages/Root.jsx";
-import {Actor} from "./Pages/Actor.jsx";
+import {Actor, loadActor} from "./Pages/Actor.jsx";
 
 
 const router = createBrowserRouter([
@@ -22,7 +22,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/actor/:id",
-                element: <Actor/>
+                element: <Actor/>,
+                loader: loadActor,
             },
         ],
     },

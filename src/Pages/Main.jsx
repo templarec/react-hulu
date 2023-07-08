@@ -28,6 +28,7 @@ export default function Main() {
     }, []);
 
     const handleSearch = (event) => {
+        setIsSearch(false)
         if (event.key === 'Enter') {
             setIsSearch(true)
             setKeywordSearch(event.target.value)

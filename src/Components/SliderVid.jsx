@@ -10,7 +10,7 @@ export function SliderVid({videos}) {
 
     let settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         lazyLoad: true,
         speed: 500,
         slidesToShow: 4,

@@ -1,19 +1,17 @@
-
 import {myFetch} from "../Utilities/myFetch.js";
-import {defer, Link, useLoaderData} from "react-router-dom";
+import {defer, Link, Outlet, useLoaderData, useOutletContext} from "react-router-dom";
 import LinkIcon from '@mui/icons-material/Link';
-import PeopleIcon from '@mui/icons-material/People';
 import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from 'react-tooltip'
-import SlideshowIcon from '@mui/icons-material/Slideshow';
 import {SliderVid} from "../Components/SliderVid.jsx";
 import {SliderCast} from "../Components/SliderCast.jsx";
+import {useCallback, useEffect, useState} from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 
 export function Movie() {
 
     const {movie, video, cast} = useLoaderData();
-
-
     return (
         <>
             <section className={"container flex flex-col items-center justify-evenly mx-auto"}>
@@ -38,15 +36,21 @@ export function Movie() {
                         </div>
                         <hr/>
                         <div className="links">
-                            <ul className={"flex flex-row justify-evenly"}>
-                                <li data-tooltip-id="link-movie" data-tooltip-content="Official Website">
+                            <ul className={"flex flex-row justify-center gap-5"}>
+                                <li className={"hover:text-red-800"} data-tooltip-id="link-movie"
+                                    data-tooltip-content="Official Website"
+                                >
                                     <Link to={movie.homepage} target={"_blank"}>
                                         <LinkIcon/>
                                     </Link>
                                 </li>
+                                <li className={"hover:text-red-800"} data-tooltip-id="add-fav"
+                                    data-tooltip-content="Add to favorites">
+                                    <FavoriteBorderIcon/>
+                                </li>
                             </ul>
                         </div>
-                        <hr/>
+
                         <h2 className={"text-3xl text-center mt-auto"}>Cast</h2>
                         <div className="cast container w-[90%] mx-auto mt-2 ">
                             <SliderCast cast={cast.cast}/>
@@ -60,6 +64,7 @@ export function Movie() {
                     </div>
                     <Tooltip id={"link-movie"}/>
                     <Tooltip id={"link-cast"}/>
+                    <Tooltip id={"add-fav"}/>
                 </div>
 
             </section>
@@ -69,8 +74,6 @@ export function Movie() {
                 <h2 className={"text-3xl text-center mb-2"}>Trailers</h2>
                 <SliderVid videos={video.results}/>
             </section>
-
-
         </>
     )
 }

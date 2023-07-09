@@ -5,11 +5,17 @@ import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from 'react-tooltip'
 import {SliderVid} from "../Components/SliderVid.jsx";
 import {SliderCast} from "../Components/SliderCast.jsx";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {Context} from "../Contexts/ContextProvider.jsx";
 
 
 export function Movie() {
+
+    const {bookmarks, handleBookmarks} = useContext(Context);
+
+    console.log(bookmarks)
+
 
     const {movie, video, cast} = useLoaderData();
     return (
@@ -45,7 +51,7 @@ export function Movie() {
                                     </Link>
                                 </li>
                                 <li className={"hover:text-red-800"} data-tooltip-id="add-fav"
-                                    data-tooltip-content="Add to favorites">
+                                    data-tooltip-content="Add to favorites" onClick={() => handleBookmarks(movie.id)}>
                                     <FavoriteBorderIcon/>
                                 </li>
                             </ul>

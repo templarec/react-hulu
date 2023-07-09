@@ -5,6 +5,7 @@ import {loadAll, Movie} from "./Pages/Movie.jsx";
 import Root from "./Pages/Root.jsx";
 import {Actor, loadActor} from "./Pages/Actor.jsx";
 import {Bookmarks} from "./Pages/Bookmarks.jsx";
+import {ContextProvider} from "./Contexts/ContextProvider.jsx";
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
 ]);
 function App() {
 
-    return <RouterProvider router={router}/>
+    return <ContextProvider><RouterProvider router={router}/></ContextProvider>
 
 
 }

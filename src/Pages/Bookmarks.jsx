@@ -28,7 +28,7 @@ export function Bookmarks() {
         <PDFViewer className={""} width={1280} height={1024}>
             <Document>
                 <Page size={"A4"} style={styles.page}>
-                    <Image style={styles.image} src={"./../public/logo.png"}>
+                    <Image style={styles.image} src={"/logo.png"}>
 
                     </Image>
                     <Text style={styles.title}>

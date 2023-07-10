@@ -12,7 +12,7 @@ export function Header() {
 				{pathname !== '' && <Link to={"/"} className={"self-start absolute left-0 top-0"}>
 					<ArrowBackIcon sx={{fontSize: 60}}/>
 				</Link>}
-				<img className={"mx-auto w-96"} src="../../public/logo.png" alt="logo"/>
+				<img className={"mx-auto w-96"} src="/logo.png" alt="logo"/>
 			</header>
 		</>
 	)

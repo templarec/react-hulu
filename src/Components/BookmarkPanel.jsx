@@ -12,7 +12,7 @@ export function BookmarkPanel() {
     return (
         <>
             <div
-                className={"bk-panel fixed text-black flex-col right-1 top-0 w-1/3 h-1/4 bg-gray-400 rounded p-3 transition-all duration-200 " + (showBookmarkPanel ? "flex" : "-top-[22%]")}>
+                className={"bk-panel fixed text-black flex flex-col right-1 top-0 w-1/3 h-1/4 bg-gray-400 rounded p-3 transition-all duration-200 " + (!showBookmarkPanel ? " -top-[22%] " : " ")}>
                 {!showBookmarkPanel && <div className="open absolute bottom-0 right-[50%] cursor-pointer"
                                             onClick={handlePanel}>
                     <KeyboardArrowDownIcon sx={{fontSize: 30}}/>

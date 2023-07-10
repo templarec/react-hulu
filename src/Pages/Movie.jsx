@@ -1,5 +1,5 @@
 import {myFetch} from "../Utilities/myFetch.js";
-import {defer, Link, Outlet, useLoaderData, useOutletContext} from "react-router-dom";
+import {defer, Link, Outlet, useLoaderData, useOutletContext, useParams} from "react-router-dom";
 import LinkIcon from '@mui/icons-material/Link';
 import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from 'react-tooltip'
@@ -8,14 +8,14 @@ import {SliderCast} from "../Components/SliderCast.jsx";
 import {useCallback, useContext, useEffect, useState} from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {Context} from "../Contexts/ContextProvider.jsx";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 
 export function Movie() {
 
     const {bookmarks, handleBookmarks} = useContext(Context);
-
-    console.log(bookmarks)
-
+    const {showBookmarkPanel, handlePanel, closePanel} = useContext(Context);
+    const params = useParams();
 
     const {movie, video, cast} = useLoaderData();
     return (
@@ -51,8 +51,10 @@ export function Movie() {
                                     </Link>
                                 </li>
                                 <li className={"hover:text-red-800"} data-tooltip-id="add-fav"
-                                    data-tooltip-content="Add to favorites" onClick={() => handleBookmarks(movie.id)}>
-                                    <FavoriteBorderIcon/>
+                                    data-tooltip-content={bookmarks.includes(movie.id) ? "Remove from favorites" : "Add to favorites"}
+                                    onClick={() => handleBookmarks(movie.id)}>
+                                    {bookmarks.includes(movie.id) ? <FavoriteIcon color={"success"}/> :
+                                        <FavoriteBorderIcon/>}
                                 </li>
                             </ul>
                         </div>

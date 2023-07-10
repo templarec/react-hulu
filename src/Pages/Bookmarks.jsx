@@ -1,36 +1,46 @@
-import {Page, Text, View, Document, StyleSheet} from '@react-pdf/renderer';
+import {Page, Text, View, Document, StyleSheet, Image} from '@react-pdf/renderer';
 import {PDFViewer} from '@react-pdf/renderer';
 import {useOutletContext, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {Context} from "../Contexts/ContextProvider.jsx";
 
 export function Bookmarks() {
-
+    const {movies} = useContext(Context);
     const styles = StyleSheet.create({
         page: {
             flexDirection: 'column',
             backgroundColor: '#FFFFFF'
         },
         section: {
-            margin: 10,
-            padding: 10,
-            flexGrow: 1
+            padding: 20,
+        },
+        image: {
+            marginVertical: 15,
+            marginHorizontal: 100,
+        },
+        title: {
+            fontSize: 25,
+            paddingLeft: 10,
         }
     });
 
     const Bookmark = () => (
-        <PDFViewer className={""} width={1280}>
+        <PDFViewer className={""} width={1280} height={1024}>
             <Document>
                 <Page size={"A4"} style={styles.page}>
-                    <View style={styles.section}>
-                        <Text>
-                            Section #1
-                        </Text>
-                    </View>
-                    <View style={styles.section}>
-                        <Text>
-                            Section #2
-                        </Text>
-                    </View>
+                    <Image style={styles.image} src={"./../public/logo.png"}>
+
+                    </Image>
+                    <Text style={styles.title}>
+                        Your favorites:
+                    </Text>
+                    {movies && movies.map(el => (
+                        <View key={el.id} style={styles.section}>
+                            <Text>
+                                {el.original_title}
+                            </Text>
+                        </View>
+                    ))}
                 </Page>
             </Document>
         </PDFViewer>
@@ -38,7 +48,7 @@ export function Bookmarks() {
 
     return (
         <>
-            <div className={"container flex justify-center mx-auto w-full h-96"}>
+            <div className={"container flex justify-center mx-auto w-full"}>
                 <Bookmark/>
             </div>
         </>

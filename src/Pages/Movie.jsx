@@ -1,26 +1,32 @@
 import {myFetch} from "../Utilities/myFetch.js";
-import {defer, Link, Outlet, useLoaderData, useOutletContext, useParams} from "react-router-dom";
+import {defer, Link, useLoaderData} from "react-router-dom";
 import LinkIcon from '@mui/icons-material/Link';
 import 'react-tooltip/dist/react-tooltip.css'
 import {Tooltip} from 'react-tooltip'
 import {SliderVid} from "../Components/SliderVid.jsx";
 import {SliderCast} from "../Components/SliderCast.jsx";
-import {useCallback, useContext, useEffect, useState} from "react";
+import {useContext, useEffect} from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {Context} from "../Contexts/ContextProvider.jsx";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 export function Movie() {
 
-    const {bookmarks, handleBookmarks} = useContext(Context);
-    const {showBookmarkPanel, handlePanel, closePanel} = useContext(Context);
-    const params = useParams();
-
+    const {bookmarks, handleBookmarks, handleClose, open} = useContext(Context);
     const {movie, video, cast} = useLoaderData();
+
+    useEffect(() => {
+
+        handleClose()
+    }, [movie]);
+
+
     return (
         <>
-            <section className={"container flex flex-col items-center justify-evenly mx-auto"}>
+            <section className={"container flex flex-col items-center justify-evenly pt-[120px] mx-auto"}>
                 <h1 className={"text-4xl mt-6"}>{movie.original_title}</h1>
                 <h3 className={"text-2xl mt-1 mb-8"}>{movie.tagline}</h3>
                 <div className="article flex flex-row">
@@ -82,6 +88,15 @@ export function Movie() {
                 <h2 className={"text-3xl text-center mb-2"}>Trailers</h2>
                 <SliderVid videos={video.results}/>
             </section>
+            <div>
+                <Backdrop
+                    sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+                    open={open}
+                    onClick={handleClose}
+                >
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+            </div>
         </>
     )
 }
@@ -90,7 +105,6 @@ export const loadAll = async ({params}) => {
     const movie = await getMovie(params.id);
     const video = await getVideos(params.id)
     const cast = await getCast(params.id)
-
     return defer({movie, video, cast})
 }
 export const getMovie = async (id) => {

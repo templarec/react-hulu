@@ -8,6 +8,13 @@ export function ContextProvider(props) {
     const [bookmarks, setBookmarks] = useState([]);
     const [showBookmarkPanel, setShowBookmarkPanel] = useState(false);
     const [movies, setMovies] = useState([]);
+    const [open, setOpen] = useState(false);
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleOpen = () => {
+        setOpen(true);
+    };
     const handleBookmarks = (id) => {
         setMovies([])
         if (!bookmarks.includes(id)) {
@@ -59,7 +66,18 @@ export function ContextProvider(props) {
     }, [bookmarks]);
     return (
         <Context.Provider
-            value={{bookmarks, handleBookmarks, showBookmarkPanel, handlePanel, closePanel, movies, removeBookmark}}>
+            value={{
+                bookmarks,
+                handleBookmarks,
+                showBookmarkPanel,
+                handlePanel,
+                closePanel,
+                movies,
+                removeBookmark,
+                open,
+                handleClose,
+                handleOpen
+            }}>
             {props.children}
         </Context.Provider>
     )

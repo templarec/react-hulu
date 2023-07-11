@@ -27,7 +27,7 @@ export function Actor() {
 
     return (
         <>
-            <section className={"container flex flex-col items-center justify-evenly mx-auto"}>
+            <section className={"container pt-[120px] flex flex-col items-center justify-evenly mx-auto"}>
                 <h1 className={"text-4xl mt-6"}>{actor.name}</h1>
                 <ul className={"flex text-[12px] text-gray-500"}>
                     {actor.also_known_as.map((ac, i) => (

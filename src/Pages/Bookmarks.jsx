@@ -48,7 +48,7 @@ export function Bookmarks() {
 
     return (
         <>
-            <div className={"container flex justify-center mx-auto w-full"}>
+            <div className={"container pt-[120px] flex justify-center mx-auto w-full"}>
                 <Bookmark/>
             </div>
         </>

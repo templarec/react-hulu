@@ -6,8 +6,10 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import {SearchCard} from "./SearchCard.jsx";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import {Link} from "react-router-dom";
+import {Skeleton} from "@mui/material";
 
-export function MovieList({endpoint, name, query, search = false}) {
+export function MovieList({endpoint, name, query, search = false, genreid}) {
     const [movies, setMovies] = useState();
 
     useEffect(() => {
@@ -77,16 +79,35 @@ export function MovieList({endpoint, name, query, search = false}) {
         <>
             <div id={name.toLowerCase()} className={"container mx-auto mt-[50px]"}>
                 <div className={"flex flex-row justify-between "}>
-                    <h3 className={"text-3xl mb-2 pl-4 "}>{name}</h3>
+                    {genreid && <h3 className={"text-3xl mb-2 pl-4 underline"}>
+                        <Link to={`/genre/${genreid}`}>
+                            {name}
+                        </Link>
+                    </h3>}
+                    {!genreid && <h3 className={"text-3xl mb-2 pl-4 "}>
+                        {name}
+                    </h3>}
                     {!search && <a href="#" className={" hover:text-red-500 "}>
                         <KeyboardDoubleArrowUpIcon sx={{fontSize: 30}}/>
                     </a>}
                 </div>
                 {!search &&
                     <Slider {...settings}>
-                        {movies && movies.results.map((el) => (
-                            <MovieCard key={el.id} data={el}/>
-                        ))}
+                        {movies ? movies.results.map((el) => (
+                                <MovieCard key={el.id} data={el}/>
+                            )) :
+                            <>
+                                <Skeleton variant={"rectangular"} width={1200} height={400}
+                                          sx={{bgcolor: 'slate.400'}}/>
+                                <Skeleton variant={"rectangular"} width={1200} height={400}
+                                          sx={{bgcolor: 'slate.400'}}/>
+                                <Skeleton variant={"rectangular"} width={1200} height={400}
+                                          sx={{bgcolor: 'slate.400'}}/>
+                                <Skeleton variant={"rectangular"} width={1200} height={400}
+                                          sx={{bgcolor: 'slate.400'}}/>
+                            </>
+
+                        }
                     </Slider>
                 }
                 {search &&

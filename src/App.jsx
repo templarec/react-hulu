@@ -6,6 +6,7 @@ import Root from "./Pages/Root.jsx";
 import {Actor, loadActor} from "./Pages/Actor.jsx";
 import {Bookmarks} from "./Pages/Bookmarks.jsx";
 import {ContextProvider} from "./Contexts/ContextProvider.jsx";
+import {Genre} from "./Pages/Genre.jsx";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "/bookmarks/",
                 element: <Bookmarks/>
+            },
+            {
+                path: "/genre/:id",
+                element: <Genre/>
             },
         ],
     },

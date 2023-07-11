@@ -4,10 +4,12 @@ import Slider from 'react-slick';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import {Link} from "react-router-dom";
 import {Tooltip} from "react-tooltip";
+import {Context} from "../Contexts/ContextProvider.jsx";
+import {useContext} from "react";
 
 
 export function SliderCast({cast}) {
-
+	const {handleOpen} = useContext(Context);
 	let settings = {
 		dots: false,
 		infinite: false,
@@ -23,7 +25,7 @@ export function SliderCast({cast}) {
                 {/* eslint-disable-next-line react/prop-types */}
 				{cast && cast.map((el, i) => (
 					<div key={i} className={"relative mx-2"} data-tooltip-id={el.id}
-						 data-tooltip-content={`${el.name} (${el.character})`}>
+						 data-tooltip-content={`${el.name} (${el.character})`} onClick={handleOpen}>
 						<Link to={`/actor/${el.id}`}>
 							<img className={"h-[10%] max-h-[130px] cursor-pointer "}
 								 src={el.profile_path ? `https://image.tmdb.org/t/p/w500/${el.profile_path}` : `https://fakeimg.pl/400x600?text=n/a`}

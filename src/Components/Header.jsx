@@ -14,7 +14,10 @@ export function Header() {
 										 className={"self-start absolute cursor-pointer pl-5 left-0 top-1/2 transform -translate-y-1/2 hover:text-red-800"}>
 					<ArrowBackIcon sx={{fontSize: 60}}/>
 				</div>}
-				<img className={"mx-auto w-96"} src="/logo.png" alt="logo"/>
+				<Link to={'/'} className={"mx-auto w-96"}>
+					<img src="/logo.png" alt="logo"/>
+				</Link>
+
 			</header>
 		</>
 	)

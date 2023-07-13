@@ -46,7 +46,7 @@ export function Actor() {
                         <p>Birthdate: {actor.birthday}</p>
                         <p>Gender: {gender}</p>
                         <p>Place of birth: {actor.place_of_birth}</p>
-                        <a className={"underline hover:text-red-800"} href={actor.homepage}>Homepage</a>
+                        <a className={"underline hover:text-red-800 cursor-pointer"} href={actor.homepage}>Homepage</a>
                     </div>
                     <div className="profile-img w-4/12 p-2">
                         <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt=""/>

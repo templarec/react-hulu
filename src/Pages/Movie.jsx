@@ -56,7 +56,7 @@ export function Movie() {
                                         <LinkIcon/>
                                     </Link>
                                 </li>
-                                <li className={"hover:text-red-800"} data-tooltip-id="add-fav"
+                                <li className={"hover:text-red-800 cursor-pointer"} data-tooltip-id="add-fav"
                                     data-tooltip-content={bookmarks.includes(movie.id) ? "Remove from favorites" : "Add to favorites"}
                                     onClick={() => handleBookmarks(movie.id)}>
                                     {bookmarks.includes(movie.id) ? <FavoriteIcon color={"success"}/> :
